@@ -22,4 +22,7 @@ app.use(cors({
     ]
 }))
 
+const index = require("./routes/index.routes");
+app.use("/", index);
+
 module.exports = app;
