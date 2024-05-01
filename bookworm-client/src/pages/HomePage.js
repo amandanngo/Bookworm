@@ -47,7 +47,7 @@ function HomePage(){
     }
 
     return(
-        <div>
+        <div id="home">
             <h2>Add Book</h2>
             <form id="add-book">
                 <input  
