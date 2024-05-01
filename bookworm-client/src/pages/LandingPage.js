@@ -4,6 +4,8 @@ import axios from 'axios';
 import { AuthContext } from '../contexts/auth.context';
 import { Link } from 'react-router-dom';
 
+import logo from '../logo.png';
+
 
 function LandingPage() {
     const { storeToken, authenticateUser } = useContext(AuthContext)
@@ -36,32 +38,41 @@ function LandingPage() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div id = "landing">
+            <div className="header">
+                <img src={logo} alt="Website Logo" /> {/* Website logo */}
+                <h1>Bookworm</h1> {/* Website title */}
+            </div>
+            <div class="centered-page">
+                <h1>Log In</h1>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="username">Username: </label>
+                        <input 
+                            type="text" 
+                            placeholder="Username"
+                            name="username" 
+                            value={state.username}
+                            onChange={updateState}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password: </label>
+                        <input 
+                            type="password" 
+                            placeholder="Password"
+                            name="password" 
+                            value={state.password}
+                            onChange={updateState}
+                        />
+                    </div>
+                    <button>
+                        Log In
+                    </button>
+                </form>
                 <div>
-                    <label htmlFor="username">Username: </label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        value={state.username}
-                        onChange={updateState}
-                    />
+                    <Link to="/signup">Create Account</Link>
                 </div>
-                <div>
-                    <label htmlFor="password">Password: </label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        value={state.password}
-                        onChange={updateState}
-                    />
-                </div>
-                <button>
-                    Log In
-                </button>
-            </form>
-            <div>
-                <Link to="/signup">Create Account</Link>
             </div>
         </div>
     );

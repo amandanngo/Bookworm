@@ -2,6 +2,76 @@
   border: 1px solid black;
 }
 
-#home{
-  background-color: red;
+body {
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
+#signup {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #FCF8EF;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #FCF8EF;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #F48688;
+  color: #fff;
+}
+
+.header img {
+  height: 200px;
+}
+
+.header h1 {
+  font-size: 100px;
+  margin: 0;
+}
+
+/* Landing and Create Account */
+.centered-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #FCF8EF;
+}
+
+.login-form, .create-account-form {
+  text-align: center;
+  padding: 0px;
+  border-radius: 0px;
+}
+
+input[type="text"], input[type="password"] {
+  display: block;
+  width: 90%;
+  padding: 20px;
+  font-size: 1.2em;
+  margin: 15px auto;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+button {
+  padding: 20px 120px;
+  margin: 10px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #F7A7A8;
+  color: #fff;
 }

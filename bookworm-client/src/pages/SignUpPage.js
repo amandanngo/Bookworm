@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import logo from '../logo.png';
+
 function SignUpPage() {
 
     const navigate = useNavigate()
@@ -30,41 +32,50 @@ function SignUpPage() {
     }
 
     return (
-        <div>
-            <h1>Sign Up</h1>
-            <form>
+        <div id = "signup">
+            <div className="header">
+                <img src={logo} alt="Website Logo" /> {/* Website logo */}
+                <h1>Bookworm</h1> {/* Website title */}
+            </div>
+            <div class="centered-page">
+                <h1>Sign Up</h1>
+                <form>
+                    <div>
+                    <label htmlFor="name"></label>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        value={state.name}
+                        onChange={updateState}
+                        required
+                    />
+                </div>
                 <div>
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    value={state.name}
-                    onChange={updateState}
-                    required
-                />
+                    <label htmlFor="username"></label>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={state.username}
+                        onChange={updateState}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password"></label>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={state.password}
+                        onChange={updateState}
+                        required
+                    />
+                </div>
+                <button onClick={handleSubmit}>Sign Up</button>  
+                </form>
             </div>
-            <div>
-                <label htmlFor="username">Username:</label>
-                <input
-                    type="text"
-                    name="username"
-                    value={state.username}
-                    onChange={updateState}
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    name="password"
-                    value={state.password}
-                    onChange={updateState}
-                    required
-                />
-            </div>
-            <button onClick={handleSubmit}>Sign Up</button>  
-            </form>
            
         </div>
     );
