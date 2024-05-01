@@ -18,7 +18,7 @@ const bookSchema = new Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Planning to Read', 'Currently Reading', 'Finished Reading']
+        enum: ['Planning-to-Read', 'Currently-Reading', 'Finished-Reading']
     }
 });
 
