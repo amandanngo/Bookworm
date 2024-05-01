@@ -57,7 +57,7 @@ router.get('/books/:category', (req, res) => {
         .catch(err => res.json(err))
 });
 
-router.post('/books/:bookId/edit-category', (req, res) => {
+router.put('/books/:bookId/edit-category', (req, res) => {
     const { category } = req.body;
     const bookId = req.params.bookId;
 

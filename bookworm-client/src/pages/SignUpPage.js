@@ -1,47 +1,71 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUpPage() {
-    const [name, setName] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleSignUp = () => {
-        // Implement sign-up logic here
-        console.log("Signing up...");
-        console.log({ name, username, password });
-    };
+    const navigate = useNavigate()
+
+    const [state, setState] = useState({
+        name : '',
+        username: '',
+        password: ''
+    });
+    
+    const updateState = event => setState({
+        ...state,
+        [event.target.name]: event.target.value
+    });
+    
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, state)
+          .then(res => {
+            console.log(res.data);
+            navigate('/')
+          })
+          .catch(err => console.log(err))
+    
+    }
 
     return (
         <div>
             <h1>Sign Up</h1>
-            <div>
+            <form>
+                <div>
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    name="name"
+                    value={state.name}
+                    onChange={updateState}
+                    required
                 />
             </div>
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    name="username"
+                    value={state.username}
+                    onChange={updateState}
+                    required
                 />
             </div>
             <div>
                 <label htmlFor="password">Password:</label>
                 <input
                     type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
+                    value={state.password}
+                    onChange={updateState}
+                    required
                 />
             </div>
-            <button onClick={handleSignUp}>Sign Up</button>
+            <button onClick={handleSubmit}>Sign Up</button>  
+            </form>
+           
         </div>
     );
 }

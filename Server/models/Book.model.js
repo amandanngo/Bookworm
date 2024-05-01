@@ -13,7 +13,7 @@ const bookSchema = new Schema({
     genre: {
         type: String,
         required: true,
-        enum: ['Fiction', 'Narrative', 'Historical Fiction', 'Science Fiction', 'History', 'Fantasy', 'Poetry', 'Science', 'Romance', 'Biography']
+        enum: ['Fiction', 'Non-fiction', 'Science Fiction', 'History', 'Fantasy', 'Poetry', 'Romance', 'Biography', 'Other']
     },
     category: {
         type: String,

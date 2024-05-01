@@ -90,4 +90,9 @@ router.post('/login', (req,res,next) => {
       });
 })
 
+router.get('/verify', isAuthenticated, (req, res, next) => {
+    console.log('hey the token payload', req.payload);
+    res.json(req.payload);
+})
+
 module.exports = router;

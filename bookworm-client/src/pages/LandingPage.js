@@ -1,29 +1,67 @@
-import React from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../contexts/auth.context';
+import { Link } from 'react-router-dom';
+
 
 function LandingPage() {
-    const handleLogin = () => {
-        console.log("Logging in...");
-    };
+    const { storeToken, authenticateUser } = useContext(AuthContext)
 
-    const handleCreateAccount = () => {
-        console.log("Navigating to sign-up page...");
-    };
+    const navigate = useNavigate()
+  
+    const [state, setState] = useState({
+      username: '',
+      password: ''
+    });
+  
+    const updateState = event => setState({
+      ...state,
+      [event.target.name]: event.target.value
+    });
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+    
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, state)
+          .then(res => {
+            console.log(res.data);
+            storeToken(res.data.authToken);
+            authenticateUser();
+            navigate('/home');
+          })
+          .catch(err => console.log(err))
+    
+    }
 
     return (
         <div>
-            <div>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username: </label>
-                    <input type="text" id="username" />
+                    <input 
+                        type="text" 
+                        name="username" 
+                        value={state.username}
+                        onChange={updateState}
+                    />
                 </div>
                 <div>
                     <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" />
+                    <input 
+                        type="password" 
+                        name="password" 
+                        value={state.password}
+                        onChange={updateState}
+                    />
                 </div>
-                <button onClick={handleLogin}>Login</button>
-            </div>
+                <button>
+                    Log In
+                </button>
+            </form>
             <div>
-                <button onClick={handleCreateAccount}>Sign Up</button>
+                <Link to="/signup">Create Account</Link>
             </div>
         </div>
     );
